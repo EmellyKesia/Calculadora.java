@@ -1,4 +1,5 @@
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class main {
@@ -7,16 +8,20 @@ public class main {
     Scanner scan = new Scanner(System.in);
     Calculadora calc = new Calculadora();
 
-    System.out.println("Digite um número: ");
-    int a = scan.nextInt();
-    System.out.println("Qual operação?");
-    String operacao = scan.next();
-    System.out.println("Digite outro número: ");
-    int b = scan.nextInt();
+    try {
+      System.out.println("Digite um número: ");
+      double a = scan.nextDouble();
 
-    int resultOperacao = calc.resultOperacao(a, b, operacao);
-    
+      System.out.println("Qual operação?");
+      String operacao = scan.next();
 
-    System.out.println("O resultado é: " + resultOperacao);
+      System.out.println("Digite outro número: ");
+      double b = scan.nextDouble();
+
+      double resultOperacao = calc.resultOperacao(a, b, operacao);
+      System.out.println("O resultado é: " + resultOperacao);
+    } catch (InputMismatchException e) {
+      System.out.println("Erro: Entrada inválida! Digite apenas números e o operador matemático (+, -, *, /)");
+    }
   }
 }

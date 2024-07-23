@@ -1,6 +1,6 @@
 public class Calculadora {
 
-    public int resultOperacao(int a, int b, String operacao) {
+    public int resultOperacao(double a, double b, String operacao) {
         
         if (operacao.equals("+")) {
             return a + b;
