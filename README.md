@@ -2,25 +2,53 @@
 
 Este projeto é uma calculadora simples em Java que permite ao usuário realizar operações matemáticas básicas (adição, subtração, multiplicação e divisão) entre dois números. O programa captura a entrada do usuário, realiza a operação desejada e exibe o resultado.
 
+## Estrutura do Projeto
+O projeto contém duas classes principais:
+
+- Classe main: Gerencia a interação com o usuário, capturando entradas, validando dados e exibindo resultados.
+- Classe Calculadora: Realiza as operações matemáticas com base na entrada do usuário.
+
 ## Funcionalidades
 - Operações Suportadas: Adição (+), Subtração (-), Multiplicação (*) e Divisão (/).
 - Validação de Entrada: O programa verifica se o usuário inseriu um número válido. Em caso de erro de digitação, uma mensagem é exibida e o usuário pode tentar novamente.
 - Tratamento de Exceções: Lida com erros de entrada inválida e outras exceções, como divisões por zero, garantindo a estabilidade do programa.
 
-## Estrutura do Código
-O código é composto pela classe main, que contém o método main responsável por:
-
-- Capturar as entradas do usuário (números e operação desejada).
-- Executar a operação escolhida.
-- Exibir o resultado da operação ou uma mensagem de erro se a entrada for inválida.
-
 ## Como Funciona
-1. O programa solicita ao usuário:
-- Primeiro número (a).
-- Operação desejada (operacao) – adição, subtração, multiplicação ou divisão.
-- Segundo número (b).
-2. A operação é realizada pelo método resultOperacao, que precisa ser implementado na classe Calculadora.
-3. O resultado é exibido no console.
+1. Interação com o Usuário:
+- A classe main captura os valores e a operação que o usuário deseja realizar.
+2. Execução da Operação:
+- O método resultOperacao da classe Calculadora é chamado para realizar a operação. Ele recebe os dois valores (a e b) e uma string operacao indicando a operação desejada.
+- O método identifica a operação com base no símbolo e retorna o resultado.
+3. Exibição do Resultado:
+- O resultado é exibido no console. Em caso de operação inválida, o método informa o usuário e retorna 0.
+
+## Exemplo de Código - Classe Calculadora
+````bash
+public class Calculadora {
+
+    public double resultOperacao(double a, double b, String operacao) {
+        
+        if (operacao.equals("+")) {
+            return a + b;
+        } 
+        else if (operacao.equals("-")) {
+            return a - b;
+        } 
+        else if (operacao.equals("*")) {
+            return a * b;
+        } 
+        else if (operacao.equals("/")) {
+            if (b == 0) {
+                throw new ArithmeticException("Erro: Divisão por zero.");
+            }
+            return a / b;
+        } 
+        else {
+            throw new IllegalArgumentException("Operação inválida. Use: +, -, *, /");
+        }
+    }
+}
+````
 
 ## Exemplos de Uso
 ````bash
@@ -39,7 +67,8 @@ Em caso de entrada inválida, como letras ou símbolos não numéricos, o progra
 
 ## Exceções Tratadas
 - InputMismatchException: Lança uma exceção quando o usuário insere um valor não numérico.
-- Outras Exceções: Exibe uma mensagem de erro correspondente se ocorrerem exceções específicas (por exemplo, divisão por zero).
+- ArithmeticException: Evita divisões por zero.
+- IllegalArgumentException: Lançada se o usuário inserir uma operação inválida.
   
 ## Como Executar
 1. Compile o código:
